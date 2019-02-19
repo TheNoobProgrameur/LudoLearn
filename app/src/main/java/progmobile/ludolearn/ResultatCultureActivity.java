@@ -77,5 +77,9 @@ public class ResultatCultureActivity extends AppCompatActivity {
     }
 
 
-
+    public void reessayer(View view) {
+        Intent intent = new Intent(this, CultureActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 }

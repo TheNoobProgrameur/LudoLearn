@@ -11,14 +11,15 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <TextView
             android:id="@+id/textViewChoixType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="20dp"
             android:text="Choisissez votre type d'exercice"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_marginTop="20dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,6 +76,7 @@
                     app:srcCompat="@drawable/divise" />
             </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

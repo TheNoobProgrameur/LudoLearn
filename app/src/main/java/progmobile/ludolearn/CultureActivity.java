@@ -1,19 +1,24 @@
 package progmobile.ludolearn;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import progmobile.ludolearn.bd.Question;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+
+import progmobile.ludolearn.bd.Question;
+
 
 public class CultureActivity extends AppCompatActivity {
 
@@ -36,6 +41,7 @@ public class CultureActivity extends AppCompatActivity {
     public ArrayList<Button> listeBouton = new ArrayList<Button>();
     public ArrayList<Integer> intList = new ArrayList<Integer>();
     public int boutonVrai;
+    public boolean choixEffectue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,103 @@ public class CultureActivity extends AppCompatActivity {
         nbErreursMaths = 0;
         nbQuestionsMaths = 0;
 
+        // Générer ma liste aléatoire de chiffres sans doublons
+        int i=0;
+        while (i<10){
+            int val = new Random().nextInt(20);
+            if (!intList.contains(val)){
+                intList.add(val);
+                i++;
+            }
+        }
+        initQuestions();
+
+        //Affichage de ma question
+        listeQuestion = Question.listAll(Question.class);
+
+        TextView numeroQuestion = (TextView) findViewById(R.id.textViewNumeroQuestion);
+        numeroQuestion.setText(nQuestion + "/10");
+        TextView text = (TextView) findViewById(R.id.textViewQuestion);
+        text.setText(listeQuestion.get(intList.get(nQuestion-1)).getIntitule());
+        Button boutonR1 = (Button) findViewById(R.id.button1);
+        Button boutonR2 = (Button) findViewById(R.id.button2);
+        Button boutonR3 = (Button) findViewById(R.id.button3);
+        Button boutonR4 = (Button) findViewById(R.id.button4);
+
+        listeBouton.add(boutonR1);
+        listeBouton.add(boutonR2);
+        listeBouton.add(boutonR3);
+        listeBouton.add(boutonR4);
+
+        Collections.shuffle(listeBouton);
+        for (int k =0 ; k<listeBouton.size(); k++){
+            if (k==0){
+                listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse1());
+            } else if (k==1){
+                listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse2());
+            } else if (k==2){
+                listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse3());
+            } else {
+                listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseVrai());
+                boutonVrai=listeBouton.get(k).getId();
+            }
+        }
+    }
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void valider(View view) {
+
+        //Gestion des erreurs
+        if (listeQuestion.get(intList.get(nQuestion-1)).getTag().equals("Français")){
+            if (view.getId() != boutonVrai){
+                nbErreursFrancais++;
+            }
+            nbQuestionsFrancais++;
+        } else if (listeQuestion.get(intList.get(nQuestion-1)).getTag().equals("Anglais")){
+            if (view.getId() != boutonVrai){
+                nbErreursAnglais++;
+            }
+            nbQuestionsAnglais++;
+        } else if (listeQuestion.get(intList.get(nQuestion-1)).getTag().equals("Sport")){
+            if (view.getId() != boutonVrai){
+                nbErreursSport++;
+            }
+            nbQuestionsSport++;
+        } else if (listeQuestion.get(intList.get(nQuestion-1)).getTag().equals("Histoire-Géographie")){
+            if (view.getId() != boutonVrai){
+                nbErreursHistoireGeo++;
+            }
+            nbQuestionsHistoireGeo++;
+        } else if (listeQuestion.get(intList.get(nQuestion-1)).getTag().equals("Arts-plastiques")){
+            if (view.getId() != boutonVrai){
+                nbErreursArtsPlastiques++;
+            }
+            nbQuestionsArtsPlastiques++;
+        } else if (listeQuestion.get(intList.get(nQuestion-1)).getTag().equals("Sciences")){
+            if (view.getId() != boutonVrai){
+                nbErreursSciences++;
+            }
+            nbQuestionsSciences++;
+        } else if (listeQuestion.get(intList.get(nQuestion-1)).getTag().equals("Mathématiques")){
+            if (view.getId() != boutonVrai){
+                nbErreursMaths++;
+            }
+            nbQuestionsMaths++;
+        }
+        nQuestion++;
+
+        // AFFICHAGE DE LA BONNE REPONSE
+        for (int k =0 ; k<listeBouton.size(); k++){
+            if(listeBouton.get(k).getId() == boutonVrai) listeBouton.get(k).getBackground().setColorFilter(ContextCompat.getColor(this, R.color.correct), PorterDuff.Mode.MULTIPLY);
+
+            else listeBouton.get(k).getBackground().setColorFilter(ContextCompat.getColor(this, R.color.incorrect), PorterDuff.Mode.MULTIPLY);
+            listeBouton.get(k).setClickable(false);
+        }
+        choixEffectue = true;
+    }
+
+    public void initQuestions(){
         Question question = new Question(
                 "Les mots «pair» et «paire» sont des...",
                 "Des antonymes",
@@ -236,126 +339,77 @@ public class CultureActivity extends AppCompatActivity {
                 "Gaz",
                 "Français");
         question20.save();
+    }
 
-        // Générer ma liste aléatoire de chiffres sans doublons
-        int i=0;
-        while (i<10){
-            int val = new Random().nextInt(20);
-            if (!intList.contains(val)){
-                intList.add(val);
-                i++;
-            }
+    public void suivant(View view) {
+
+        // SI AUCUNE REPONSE N'EST DONNEE
+        if(!choixEffectue){
+            Toast.makeText(this, "Tu dois choisir une réponse à cette question !", Toast.LENGTH_SHORT).show();
         }
 
-        //Affichage de ma question
-        listeQuestion = Question.listAll(Question.class);
+        else{
+            choixEffectue = false;
+            // REMISE A ZERO DES BOUTONS
+            for (int k =0 ; k<listeBouton.size(); k++){
+                listeBouton.get(k).getBackground().clearColorFilter();
+                listeBouton.get(k).setClickable(true);
+            }
 
-        TextView numeroQuestion = (TextView) findViewById(R.id.textViewNumeroQuestion);
-        numeroQuestion.setText(nQuestion + "/10");
-        TextView text = (TextView) findViewById(R.id.textViewQuestion);
-        text.setText(listeQuestion.get(intList.get(nQuestion-1)).getIntitule());
-        Button boutonR1 = (Button) findViewById(R.id.button1);
-        Button boutonR2 = (Button) findViewById(R.id.button2);
-        Button boutonR3 = (Button) findViewById(R.id.button3);
-        Button boutonR4 = (Button) findViewById(R.id.button4);
+            // On passe a la question suivante
+            if (nQuestion <11){
+                listeBouton.clear();
+                TextView text = (TextView) findViewById(R.id.textViewQuestion);
+                text.setText(listeQuestion.get(intList.get(nQuestion-1)).getIntitule());
+                Button boutonR1 = (Button) findViewById(R.id.button1);
+                Button boutonR2 = (Button) findViewById(R.id.button2);
+                Button boutonR3 = (Button) findViewById(R.id.button3);
+                Button boutonR4 = (Button) findViewById(R.id.button4);
+                TextView numeroQuestion = (TextView) findViewById(R.id.textViewNumeroQuestion);
+                numeroQuestion.setText(nQuestion + "/10");
 
-        listeBouton.add(boutonR1);
-        listeBouton.add(boutonR2);
-        listeBouton.add(boutonR3);
-        listeBouton.add(boutonR4);
+                listeBouton.add(boutonR1);
+                listeBouton.add(boutonR2);
+                listeBouton.add(boutonR3);
+                listeBouton.add(boutonR4);
 
-        Collections.shuffle(listeBouton);
-        for (int k =0 ; k<listeBouton.size(); k++){
-            if (k==0){
-                listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse1());
-            } else if (k==1){
-                listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse2());
-            } else if (k==2){
-                listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse3());
-            } else {
-                listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseVrai());
-                boutonVrai=listeBouton.get(k).getId();
+                Collections.shuffle(listeBouton);
+                for (int k =0 ; k<listeBouton.size(); k++){
+                    if (k==0){
+                        listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse1());
+                    } else if (k==1){
+                        listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse2());
+                    } else if (k==2){
+                        listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse3());
+                    } else {
+                        listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseVrai());
+                        boutonVrai=listeBouton.get(k).getId();
+                    }
+                }
+
+                if(nQuestion == 10){
+                    Button boutonContinuer = findViewById(R.id.buttonContinuer);
+                    boutonContinuer.setText("Résultats");
+                }
+            }
+            else {
+                Question.deleteAll(Question.class);
+                Intent intent = new Intent(this, ResultatCultureActivity.class);
+                startActivity(intent);
             }
         }
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void valider(View view) {
-
-        //Gestion des erreurs
-        if (listeQuestion.get(intList.get(nQuestion-1)).getTag().equals("Français")){
-            if (view.getId() != boutonVrai){
-                nbErreursFrancais++;
-            }
-            nbQuestionsFrancais++;
-        } else if (listeQuestion.get(intList.get(nQuestion-1)).getTag().equals("Anglais")){
-            if (view.getId() != boutonVrai){
-                nbErreursAnglais++;
-            }
-            nbQuestionsAnglais++;
-        } else if (listeQuestion.get(intList.get(nQuestion-1)).getTag().equals("Sport")){
-            if (view.getId() != boutonVrai){
-                nbErreursSport++;
-            }
-            nbQuestionsSport++;
-        } else if (listeQuestion.get(intList.get(nQuestion-1)).getTag().equals("Histoire-Géographie")){
-            if (view.getId() != boutonVrai){
-                nbErreursHistoireGeo++;
-            }
-            nbQuestionsHistoireGeo++;
-        } else if (listeQuestion.get(intList.get(nQuestion-1)).getTag().equals("Arts-plastiques")){
-            if (view.getId() != boutonVrai){
-                nbErreursArtsPlastiques++;
-            }
-            nbQuestionsArtsPlastiques++;
-        } else if (listeQuestion.get(intList.get(nQuestion-1)).getTag().equals("Sciences")){
-            if (view.getId() != boutonVrai){
-                nbErreursSciences++;
-            }
-            nbQuestionsSciences++;
-        } else if (listeQuestion.get(intList.get(nQuestion-1)).getTag().equals("Mathématiques")){
-            if (view.getId() != boutonVrai){
-                nbErreursMaths++;
-            }
-            nbQuestionsMaths++;
+    @Override
+    public void onBackPressed(){
+        if(nQuestion < 11){
+            Toast.makeText(this, "Tu dois finir cette partie avant de pouvoir revenir au menu principal !", Toast.LENGTH_LONG).show();
         }
-
-        nQuestion++;
-
-        //On passe a la question suivante
-        if (nQuestion <11){
-            listeBouton.clear();
-            TextView text = (TextView) findViewById(R.id.textViewQuestion);
-            text.setText(listeQuestion.get(intList.get(nQuestion-1)).getIntitule());
-            Button boutonR1 = (Button) findViewById(R.id.button1);
-            Button boutonR2 = (Button) findViewById(R.id.button2);
-            Button boutonR3 = (Button) findViewById(R.id.button3);
-            Button boutonR4 = (Button) findViewById(R.id.button4);
-            TextView numeroQuestion = (TextView) findViewById(R.id.textViewNumeroQuestion);
-            numeroQuestion.setText(nQuestion + "/10");
-
-            listeBouton.add(boutonR1);
-            listeBouton.add(boutonR2);
-            listeBouton.add(boutonR3);
-            listeBouton.add(boutonR4);
-
-            Collections.shuffle(listeBouton);
-            for (int k =0 ; k<listeBouton.size(); k++){
-                if (k==0){
-                    listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse1());
-                } else if (k==1){
-                    listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse2());
-                } else if (k==2){
-                    listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse3());
-                } else {
-                    listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseVrai());
-                    boutonVrai=listeBouton.get(k).getId();
-                }
-            }
-        } else {
-            Question.deleteAll(Question.class);
-            Intent intent = new Intent(this, ResultatCultureActivity.class);
+        else{
+            Intent intent = new Intent(this, choixExerciceActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
     }
+
 }

@@ -9,17 +9,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textViewResultatCulture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="20dp"
             android:text="RESULTAT"
+            android:layout_marginTop="20dp"
             android:textSize="50dp" />
 
         <TextView
@@ -84,23 +82,35 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
         android:gravity="bottom"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="217dp">
+        android:orientation="vertical">
 
         <Button
-            android:id="@+id/retourExercice"
+            android:id="@+id/recommencerQuizz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:background="#BDEC00"
+            android:onClick="reessayer"
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
-            android:onClick="retour"
-            android:layout_marginBottom="50dp"
+            android:text="RéESSAYER" />
+
+        <Button
+            android:id="@+id/retourChoixExercice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"
             android:background="#BDEC00"
+            android:onClick="retour"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
             android:text="CHOISIR UN AUTRE EXERCICE" />
 
     </LinearLayout>
+
+
 
 </android.support.constraint.ConstraintLayout>

@@ -56,25 +56,16 @@
             android:name=".ChoixTableMultiplication"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TableMultiplicationActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ResultatFoisActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".PlusActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".MoinsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".DiviseActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ResultatCultureActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".PenduActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CalculsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ResultatMathsActivity"
             android:screenOrientation="portrait" />
     </application>
 

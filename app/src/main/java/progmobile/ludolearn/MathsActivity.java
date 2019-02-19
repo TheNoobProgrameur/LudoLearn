@@ -16,12 +16,14 @@ public class MathsActivity extends AppCompatActivity {
     }
 
     public void plus(View view){
-        Intent intent = new Intent(this,PlusActivity.class);
+        Intent intent = new Intent(this, CalculsActivity.class);
+        intent.putExtra("choixCalculs", "addition");
         startActivity(intent);
     }
 
     public void moins(View view){
-        Intent intent = new Intent(this, MoinsActivity.class);
+        Intent intent = new Intent(this, CalculsActivity.class);
+        intent.putExtra("choixCalculs", "soustraction");
         startActivity(intent);
     }
 
@@ -31,7 +33,9 @@ public class MathsActivity extends AppCompatActivity {
     }
 
     public void divise(View view) {
-        Intent intent = new Intent(this, DiviseActivity.class);
+        Intent intent = new Intent(this, CalculsActivity.class);
+        intent.putExtra("choixCalculs", "division");
         startActivity(intent);
     }
+
 }
