@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="progmobile.ludolearn"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="26" />
+
+    <application
+        android:name="com.orm.SugarApp"
+        android:allowBackup="true"
+        android:debuggable="true"
+        android:icon="@drawable/dessin_ecole"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="progmobile.ludolearn.AccueilActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="progmobile.ludolearn.choixConnectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="progmobile.ludolearn.ConnexionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="progmobile.ludolearn.inscriptionActivity"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="DATABASE"
+            android:value="database.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="10" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="progmobile.ludolearn.bd" />
+
+        <activity
+            android:name="progmobile.ludolearn.choixExerciceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="progmobile.ludolearn.MathsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="progmobile.ludolearn.CultureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="progmobile.ludolearn.ChoixTableMultiplication"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="progmobile.ludolearn.TableMultiplicationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="progmobile.ludolearn.ResultatFoisActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="progmobile.ludolearn.PlusActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="progmobile.ludolearn.MoinsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="progmobile.ludolearn.DiviseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="progmobile.ludolearn.ResultatCultureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="progmobile.ludolearn.PenduActivity"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="android.support.VERSION"
+            android:value="26.1.0" />
+        <meta-data
+            android:name="android.arch.lifecycle.VERSION"
+            android:value="27.0.0-SNAPSHOT" />
+    </application>
+
+</manifest>
