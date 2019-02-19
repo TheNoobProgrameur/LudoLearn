@@ -1,7 +1,7 @@
 #Internal package file, do not edit.
-#Mon Feb 18 20:25:54 EST 2019
+#Mon Feb 18 22:54:34 EST 2019
 0.baseType=DIRECTORY
-0.base=C\:\\Users\\abert\\Documents\\UQAC\\LudoLearn\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+0.base=C\:\\Users\\Norman\\Desktop\\UQAC\\S6\\Informatique mobile\\TP\\Git\\LudoLearn\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 0.path=classes.dex
 0.set=DEX
 count=1

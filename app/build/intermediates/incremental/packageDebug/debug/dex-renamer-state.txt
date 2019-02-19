@@ -1,4 +1,4 @@
-#Mon Feb 18 20:25:54 EST 2019
-base.0=C\:\\Users\\abert\\Documents\\UQAC\\LudoLearn\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+#Mon Feb 18 22:54:33 EST 2019
+base.0=C\:\\Users\\Norman\\Desktop\\UQAC\\S6\\Informatique mobile\\TP\\Git\\LudoLearn\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex
