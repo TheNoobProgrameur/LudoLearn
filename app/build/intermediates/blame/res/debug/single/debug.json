@@ -460,6 +460,10 @@
         "source": "C:\\Users\\abert\\Documents\\UQAC\\LudoLearn\\app\\src\\main\\res\\layout\\activity_culture.xml"
     },
     {
+        "merged": "C:\\Users\\Norman\\Desktop\\UQAC\\S6\\Informatique mobile\\TP\\Git\\LudoLearn\\app\\build\\intermediates\\res\\merged\\debug\\drawable_fond_intru.png.flat",
+        "source": "C:\\Users\\Norman\\Desktop\\UQAC\\S6\\Informatique mobile\\TP\\Git\\LudoLearn\\app\\src\\main\\res\\drawable\\fond_intru.png"
+    },
+    {
         "merged": "C:\\Users\\Norman\\Desktop\\UQAC\\S6\\Informatique mobile\\TP\\Git\\LudoLearn\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_alert_dialog_button_bar_material.xml.flat",
         "source": "C:\\Users\\Norman\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\224e413f986a49052cd68236b01202d5\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
     },
@@ -714,6 +718,10 @@
     {
         "merged": "C:\\Users\\Norman\\Desktop\\UQAC\\S6\\Informatique mobile\\TP\\Git\\LudoLearn\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_divider_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Norman\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\224e413f986a49052cd68236b01202d5\\res\\drawable-mdpi-v4\\abc_list_divider_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Norman\\Desktop\\UQAC\\S6\\Informatique mobile\\TP\\Git\\LudoLearn\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_resultat_intrus.xml.flat",
+        "source": "C:\\Users\\Norman\\Desktop\\UQAC\\S6\\Informatique mobile\\TP\\Git\\LudoLearn\\app\\src\\main\\res\\layout\\activity_resultat_intrus.xml"
     },
     {
         "merged": "C:\\Users\\abert\\Documents\\UQAC\\LudoLearn\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_divider_mtrl_alpha.9.png.flat",
@@ -2060,6 +2068,10 @@
         "source": "C:\\Users\\abert\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\1a2f053aed1021070fd51208edf90323\\res\\drawable-xxxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png"
     },
     {
+        "merged": "C:\\Users\\Norman\\Desktop\\UQAC\\S6\\Informatique mobile\\TP\\Git\\LudoLearn\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_intrus.xml.flat",
+        "source": "C:\\Users\\Norman\\Desktop\\UQAC\\S6\\Informatique mobile\\TP\\Git\\LudoLearn\\app\\src\\main\\res\\layout\\activity_intrus.xml"
+    },
+    {
         "merged": "C:\\Users\\abert\\Documents\\UQAC\\LudoLearn\\app\\build\\intermediates\\res\\merged\\debug\\drawable_fois.png.flat",
         "source": "C:\\Users\\abert\\Documents\\UQAC\\LudoLearn\\app\\src\\main\\res\\drawable\\fois.png"
     },
@@ -2842,6 +2854,10 @@
     {
         "merged": "C:\\Users\\abert\\Documents\\UQAC\\LudoLearn\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-mdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
         "source": "C:\\Users\\abert\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\1a2f053aed1021070fd51208edf90323\\res\\drawable-ldrtl-mdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "C:\\Users\\Norman\\Desktop\\UQAC\\S6\\Informatique mobile\\TP\\Git\\LudoLearn\\app\\build\\intermediates\\res\\merged\\debug\\drawable_intrus.png.flat",
+        "source": "C:\\Users\\Norman\\Desktop\\UQAC\\S6\\Informatique mobile\\TP\\Git\\LudoLearn\\app\\src\\main\\res\\drawable\\intrus.png"
     },
     {
         "merged": "C:\\Users\\abert\\Documents\\UQAC\\LudoLearn\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_text_select_handle_left_mtrl_light.png.flat",

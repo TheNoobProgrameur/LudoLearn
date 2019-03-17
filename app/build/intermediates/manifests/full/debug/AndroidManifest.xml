@@ -73,6 +73,12 @@
         <activity
             android:name="progmobile.ludolearn.ResultatMathsActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="progmobile.ludolearn.IntrusActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="progmobile.ludolearn.ResultatIntrusActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="android.support.VERSION"
