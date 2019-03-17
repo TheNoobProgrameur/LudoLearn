@@ -35,8 +35,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:gravity="bottom"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="217dp">
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/retourExercice"
