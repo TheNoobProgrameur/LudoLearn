@@ -11,8 +11,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Random;
+
+import progmobile.ludolearn.bd.Resultat;
 
 public class PenduActivity extends AppCompatActivity{
 
@@ -119,8 +124,21 @@ public class PenduActivity extends AppCompatActivity{
 
                 // SI LE MOT EST TROUVE ENTIEREMENT
                 if(motDecoupeCache.equals(motDecoupeClair)){
+
+
+                    if (ConnexionActivity.nomUser == null) {
+
+                        Resultat resultatFinal = new Resultat("Inconu", nbErreurs, "Pendu");
+                        resultatFinal.save();
+                    }
+                    else {
+                        Resultat resultatFinal = new Resultat(ConnexionActivity.nomUser, nbErreurs, "Pendu");
+                        resultatFinal.save();
+                    }
+
+
                     TextView definition = (TextView) findViewById(R.id.textDefinition);
-                    definition.setText(listeMotUtilisee.get(motEntier));
+                    definition.setText(listeMotUtilisee.get(motEntier)+"\n"+"Dennier Resultat (nb Erreur) : \n"+TabScor());;
 
                     finPartie();
                 }
@@ -179,7 +197,7 @@ public class PenduActivity extends AppCompatActivity{
                         motPendu.setText(motEntier);
 
                         TextView definition = (TextView) findViewById(R.id.textDefinition);
-                        definition.setText(listeMotUtilisee.get(motEntier));
+                        definition.setText(listeMotUtilisee.get(motEntier)+"\n"+"Dennier Resultat (nb Erreur) : \n"+TabScor());
 
                         finPartie();
 
@@ -304,4 +322,29 @@ public class PenduActivity extends AppCompatActivity{
         setContentView(R.layout.activity_categorie_pendu);
         activityCategoriePendu = true;
     }
+
+    public String TabScor(){
+
+        String message = "";
+
+
+        ArrayList<Resultat> res = (ArrayList) Resultat.listAll(Resultat.class);
+
+        int i = 0;
+
+        Iterator<Resultat> itResultat = res.iterator();
+
+        while (itResultat.hasNext() && i < 6 ){
+            Resultat resCourant = itResultat.next();
+            if(resCourant.getNomJeu().equals("Pendu")){
+                message += resCourant.toString()+"\n";
+                i++;
+            }
+
+        }
+
+        return message;
+    }
+
+
 }

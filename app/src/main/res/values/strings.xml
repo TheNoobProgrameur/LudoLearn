@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">LudoLearn</string>
+    <string name="table_des_score">Dernier Resultat :</string>
+    <string name="arts_plastiques">Arts-Plastiques :</string>
+    <string name="histoire_g_ographie">Histoire-Géographie :</string>
 </resources>
