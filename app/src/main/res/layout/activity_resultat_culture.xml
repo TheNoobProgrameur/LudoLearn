@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Histoire-Géographie : "
+            android:text="@string/histoire_g_ographie"
             android:textSize="20dp" />
 
         <TextView
@@ -73,8 +73,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Arts-Plastiques : "
+            android:text="@string/arts_plastiques"
             android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/Resultat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/table_des_score"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
 
     </LinearLayout>
