@@ -131,8 +131,8 @@ public class PenduActivity extends AppCompatActivity{
                         Resultat resultatFinal = new Resultat("Inconu", nbErreurs, "Pendu");
                         resultatFinal.save();
                     }
-                    else {
-                        Resultat resultatFinal = new Resultat(ConnexionActivity.nomUser, nbErreurs, "Pendu");
+                    else if  (ConnexionActivity.nomUser != "toi !") {
+                        Resultat resultatFinal = new Resultat(ConnexionActivity.nomUser.split(" ")[0], nbErreurs, "Pendu");
                         resultatFinal.save();
                     }
 
@@ -197,7 +197,7 @@ public class PenduActivity extends AppCompatActivity{
                         motPendu.setText(motEntier);
 
                         TextView definition = (TextView) findViewById(R.id.textDefinition);
-                        definition.setText(listeMotUtilisee.get(motEntier)+"\n"+"Dennier Resultat (nb Erreur) : \n"+TabScor());
+                        definition.setText(listeMotUtilisee.get(motEntier)+"\n"+"Dennier Resultat (nb Erreur) : \n"+TabScor()) ;
 
                         finPartie();
 

@@ -79,8 +79,8 @@ public class ResultatCultureActivity extends AppCompatActivity {
             Resultat resultatFinal = new Resultat("Inconu", scoreFinale, "CultureG");
             resultatFinal.save();
         }
-        else {
-            Resultat resultatFinal = new Resultat(ConnexionActivity.nomUser, scoreFinale, "CultureG");
+        else if  (ConnexionActivity.nomUser != "toi !") {
+            Resultat resultatFinal = new Resultat(ConnexionActivity.nomUser.split(" ")[0], scoreFinale, "CultureG") ;
             resultatFinal.save();
         }
 

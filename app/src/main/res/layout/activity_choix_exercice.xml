@@ -95,8 +95,7 @@
                         android:id="@+id/imageAutre2"
                         android:layout_width="150dp"
                         android:layout_height="175dp"
-                        android:onClick="intrus"
-                        app:srcCompat="@drawable/intrus" />
+                        app:srcCompat="@drawable/bouton_photo" />
                 </GridLayout>
             </LinearLayout>
 
