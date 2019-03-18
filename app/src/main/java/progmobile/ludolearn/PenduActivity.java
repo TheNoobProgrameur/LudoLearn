@@ -138,7 +138,7 @@ public class PenduActivity extends AppCompatActivity{
 
 
                     TextView definition = (TextView) findViewById(R.id.textDefinition);
-                    definition.setText(listeMotUtilisee.get(motEntier)+"\n"+"Dennier Resultat (nb Erreur) : \n"+TabScor());;
+                    definition.setText(listeMotUtilisee.get(motEntier)+"\n\n\n\n"+"Derniers Resultats (Nombre d'erreurs) : \n"+TabScor());;
 
                     finPartie();
                 }
@@ -197,7 +197,7 @@ public class PenduActivity extends AppCompatActivity{
                         motPendu.setText(motEntier);
 
                         TextView definition = (TextView) findViewById(R.id.textDefinition);
-                        definition.setText(listeMotUtilisee.get(motEntier)+"\n"+"Dennier Resultat (nb Erreur) : \n"+TabScor()) ;
+                        definition.setText(listeMotUtilisee.get(motEntier)+"\n\n\n\n"+"Derniers Resultats (Nombre d'erreurs) : \n"+TabScor());;
 
                         finPartie();
 
@@ -273,31 +273,31 @@ public class PenduActivity extends AppCompatActivity{
         for(int i = 0; i < layout.getChildCount(); i++){
             layout.getChildAt(i).setClickable(false);
         }
-        layout.setVisibility(View.INVISIBLE);
+        layout.setVisibility(View.GONE);
 
         layout = findViewById(R.id.layout_G_L);
         for(int i = 0; i < layout.getChildCount(); i++){
             layout.getChildAt(i).setClickable(false);
         }
-        layout.setVisibility(View.INVISIBLE);
+        layout.setVisibility(View.GONE);
 
         layout = findViewById(R.id.layout_M_R);
         for(int i = 0; i < layout.getChildCount(); i++){
             layout.getChildAt(i).setClickable(false);
         }
-        layout.setVisibility(View.INVISIBLE);
+        layout.setVisibility(View.GONE);
 
         layout = findViewById(R.id.layout_S_X);
         for(int i = 0; i < layout.getChildCount(); i++){
             layout.getChildAt(i).setClickable(false);
         }
-        layout.setVisibility(View.INVISIBLE);
+        layout.setVisibility(View.GONE);
 
         layout = findViewById(R.id.layout_Y_Z);
         for(int i = 0; i < layout.getChildCount(); i++){
             layout.getChildAt(i).setClickable(false);
         }
-        layout.setVisibility(View.INVISIBLE);
+        layout.setVisibility(View.GONE);
 
         Button boutonRecommencer = findViewById(R.id.boutonRecommencer);
         boutonRecommencer.setVisibility(View.VISIBLE);

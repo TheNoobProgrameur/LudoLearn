@@ -41,6 +41,11 @@ public class choixExerciceActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void intrus(View view){
+        Intent intent = new Intent(this, IntrusActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, AccueilActivity.class);

@@ -67,6 +67,13 @@
         <activity
             android:name=".ResultatMathsActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".IntrusActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ResultatIntrusActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
