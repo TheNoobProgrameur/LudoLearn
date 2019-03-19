@@ -1,6 +1,8 @@
 package progmobile.ludolearn;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,12 +23,14 @@ import progmobile.ludolearn.bd.Question;
 
 public class IntrusActivity extends AppCompatActivity {
 
-    public ArrayList<Integer> intList = new ArrayList<Integer>();
-    public List<Question> listeQuestion;
     public int nQuestion=1;
-    public ArrayList<RadioButton> listeRadioBouton = new ArrayList<RadioButton>();
+    public List<Question> listeQuestion;
+    public ArrayList<Button> listeBouton = new ArrayList<Button>();
+    public ArrayList<Integer> intList = new ArrayList<Integer>();
     public int boutonVrai;
     public static int nbErreurs;
+    public boolean choixEffectue;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,54 @@ public class IntrusActivity extends AppCompatActivity {
 
         nbErreurs = 0;
 
+        creerQuestions();
+
+        // Générer ma liste aléatoire de chiffres sans doublons
+        int i=0;
+        while (i<10){
+            int val = new Random().nextInt(10);
+            if (!intList.contains(val)){
+                intList.add(val);
+                i++;
+            }
+        }
+
+        //Affichage de ma question
+        listeQuestion = Question.listAll(Question.class);
+
+        TextView numeroQuestion = (TextView) findViewById(R.id.textViewNumeroQuestion);
+        numeroQuestion.setText(nQuestion + "/10");
+        TextView text = (TextView) findViewById(R.id.textViewQuestion);
+        text.setText(listeQuestion.get(intList.get(nQuestion-1)).getIntitule());
+        Button boutonR1 = (Button) findViewById(R.id.bouton1);
+        Button boutonR2 = (Button) findViewById(R.id.bouton2);
+        Button boutonR3 = (Button) findViewById(R.id.bouton3);
+        Button boutonR4 = (Button) findViewById(R.id.bouton4);
+
+        listeBouton.add(boutonR1);
+        listeBouton.add(boutonR2);
+        listeBouton.add(boutonR3);
+        listeBouton.add(boutonR4);
+
+        Collections.shuffle(listeBouton);
+        for (int k =0 ; k<listeBouton.size(); k++){
+            if (k==0){
+                listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse1());
+            } else if (k==1){
+                listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse2());
+            } else if (k==2){
+                listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse3());
+            } else {
+                listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseVrai());
+                boutonVrai=listeBouton.get(k).getId();
+            }
+        }
+
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setProgress(nQuestion);
+    }
+
+    private void creerQuestions() {
         Question question = new Question(
                 "Comiques",
                 "Coluche",
@@ -123,114 +176,81 @@ public class IntrusActivity extends AppCompatActivity {
                 "Marc Éliott",
                 "Intrus");
         question10.save();
-
-        // Générer ma liste aléatoire de chiffres sans doublons
-        int i=0;
-        while (i<10){
-            int val = new Random().nextInt(10);
-            if (!intList.contains(val)){
-                intList.add(val);
-                i++;
-            }
-        }
-
-        //Affichage de ma question
-        listeQuestion = Question.listAll(Question.class);
-
-        TextView numeroQuestion = (TextView) findViewById(R.id.textViewNumeroQuestion);
-        numeroQuestion.setText(nQuestion + "/10");
-        TextView text = (TextView) findViewById(R.id.textViewQuestion);
-        text.setText(listeQuestion.get(intList.get(nQuestion-1)).getIntitule());
-        RadioButton boutonR1 = (RadioButton) findViewById(R.id.radioButton1);
-        RadioButton boutonR2 = (RadioButton) findViewById(R.id.radioButton2);
-        RadioButton boutonR3 = (RadioButton) findViewById(R.id.radioButton3);
-        RadioButton boutonR4 = (RadioButton) findViewById(R.id.radioButton4);
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-
-        listeRadioBouton.add(boutonR1);
-        listeRadioBouton.add(boutonR2);
-        listeRadioBouton.add(boutonR3);
-        listeRadioBouton.add(boutonR4);
-
-        Collections.shuffle(listeRadioBouton);
-        for (int k =0 ; k<listeRadioBouton.size(); k++){
-            if (k==0){
-                listeRadioBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse1());
-            } else if (k==1){
-                listeRadioBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse2());
-            } else if (k==2){
-                listeRadioBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse3());
-            } else {
-                listeRadioBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseVrai());
-                boutonVrai=listeRadioBouton.get(k).getId();
-            }
-        }
-
-        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        progressBar.setProgress(nQuestion);
     }
 
-    public void valider(View view) {
-
-        RadioButton boutonR1 = (RadioButton) findViewById(R.id.radioButton1);
-        RadioButton boutonR2 = (RadioButton) findViewById(R.id.radioButton2);
-        RadioButton boutonR3 = (RadioButton) findViewById(R.id.radioButton3);
-        RadioButton boutonR4 = (RadioButton) findViewById(R.id.radioButton4);
-
-        if(boutonR1.isChecked()){
-            if(boutonR1.getId() !=  boutonVrai)
-                nbErreurs++;
-        }
-        else if (boutonR2.isChecked()){
-            if(boutonR2.getId() !=  boutonVrai)
-                nbErreurs++;
-        }
-        else if (boutonR3.isChecked()){
-            if(boutonR3.getId() !=  boutonVrai)
-                nbErreurs++;
-        }else if (boutonR4.isChecked()){
-            if(boutonR4.getId() !=  boutonVrai)
-                nbErreurs++;
-        }else{
-            nbErreurs++;
+    public void suivant(View view) {
+        // SI AUCUNE REPONSE N'EST DONNEE
+        if(!choixEffectue){
+            Toast.makeText(this, "Tu dois choisir une réponse à cette question !", Toast.LENGTH_SHORT).show();
         }
 
-        System.out.println(nbErreurs);
-
-        nQuestion++;
-
-        if (nQuestion <11){
-            listeRadioBouton.clear();
-            TextView text = (TextView) findViewById(R.id.textViewQuestion);
-            text.setText(listeQuestion.get(intList.get(nQuestion-1)).getIntitule());
-            TextView numeroQuestion = (TextView) findViewById(R.id.textViewNumeroQuestion);
-            numeroQuestion.setText(nQuestion + "/10");
-
-            listeRadioBouton.add(boutonR1);
-            listeRadioBouton.add(boutonR2);
-            listeRadioBouton.add(boutonR3);
-            listeRadioBouton.add(boutonR4);
-
-            Collections.shuffle(listeRadioBouton);
-            for (int k =0 ; k<listeRadioBouton.size(); k++){
-                if (k==0){
-                    listeRadioBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse1());
-                } else if (k==1){
-                    listeRadioBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse2());
-                } else if (k==2){
-                    listeRadioBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse3());
-                } else {
-                    listeRadioBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseVrai());
-                    boutonVrai=listeRadioBouton.get(k).getId();
-                }
+        else{
+            choixEffectue = false;
+            // REMISE A ZERO DES BOUTONS
+            for (int k =0 ; k<listeBouton.size(); k++){
+                listeBouton.get(k).getBackground().clearColorFilter();
+                listeBouton.get(k).setClickable(true);
             }
 
-            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-            progressBar.setProgress(nQuestion);
-        }else {
-            Question.deleteAll(Question.class);
-            Intent intent = new Intent(this, ResultatIntrusActivity.class);
-            startActivity(intent);
+            // On passe a la question suivante
+            if (nQuestion <11){
+                listeBouton.clear();
+                TextView text = (TextView) findViewById(R.id.textViewQuestion);
+                text.setText(listeQuestion.get(intList.get(nQuestion-1)).getIntitule());
+                Button boutonR1 = (Button) findViewById(R.id.bouton1);
+                Button boutonR2 = (Button) findViewById(R.id.bouton2);
+                Button boutonR3 = (Button) findViewById(R.id.bouton3);
+                Button boutonR4 = (Button) findViewById(R.id.bouton4);
+                TextView numeroQuestion = (TextView) findViewById(R.id.textViewNumeroQuestion);
+                numeroQuestion.setText(nQuestion + "/10");
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+                progressBar.setProgress(nQuestion);
+
+                listeBouton.add(boutonR1);
+                listeBouton.add(boutonR2);
+                listeBouton.add(boutonR3);
+                listeBouton.add(boutonR4);
+
+                Collections.shuffle(listeBouton);
+                for (int k =0 ; k<listeBouton.size(); k++){
+                    if (k==0){
+                        listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse1());
+                    } else if (k==1){
+                        listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse2());
+                    } else if (k==2){
+                        listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseFausse3());
+                    } else {
+                        listeBouton.get(k).setText(listeQuestion.get(intList.get(nQuestion-1)).getReponseVrai());
+                        boutonVrai=listeBouton.get(k).getId();
+                    }
+                }
+                System.out.print("ICI");
+                if(nQuestion == 10){
+                    Button boutonContinuer = findViewById(R.id.intrus_boutonContinuer);
+                    boutonContinuer.setText("Résultats");
+                }
+            }
+            else {
+                Question.deleteAll(Question.class);
+                Intent intent = new Intent(this, ResultatIntrusActivity.class);
+                startActivity(intent);
+            }
         }
+    }
+    public void valider(View view) {
+        //Gestion des erreurs
+        if (view.getId() != boutonVrai){
+            nbErreurs++;
+        }
+        nQuestion++;
+
+        // AFFICHAGE DE LA BONNE REPONSE
+        for (int k =0 ; k<listeBouton.size(); k++){
+            if(listeBouton.get(k).getId() == boutonVrai) listeBouton.get(k).getBackground().setColorFilter(ContextCompat.getColor(this, R.color.correct), PorterDuff.Mode.MULTIPLY);
+
+            else listeBouton.get(k).getBackground().setColorFilter(ContextCompat.getColor(this, R.color.incorrect), PorterDuff.Mode.MULTIPLY);
+            listeBouton.get(k).setClickable(false);
+        }
+        choixEffectue = true;
     }
 }

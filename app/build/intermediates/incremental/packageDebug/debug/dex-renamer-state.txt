@@ -1,4 +1,4 @@
-#Sun Mar 17 21:55:22 EDT 2019
+#Mon Mar 18 21:47:32 EDT 2019
 base.0=C\:\\Users\\Norman\\Desktop\\UQAC\\S6\\Informatique mobile\\TP\\Git\\LudoLearn\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex

@@ -15,8 +15,8 @@
             android:id="@+id/textViewResultatCulture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:gravity="center"
+            android:layout_marginTop="10dp"
             android:text="RESULTAT"
             android:textSize="50dp" />
 
@@ -36,6 +36,18 @@
         android:layout_alignParentBottom="true"
         android:gravity="bottom"
         android:orientation="vertical">
+
+        <Button
+            android:id="@+id/recommencerQuizz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:background="#BDEC00"
+            android:onClick="reessayer"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:text="RéESSAYER" />
 
         <Button
             android:id="@+id/retourExercice"

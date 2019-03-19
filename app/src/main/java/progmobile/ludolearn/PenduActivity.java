@@ -218,7 +218,7 @@ public class PenduActivity extends AppCompatActivity{
         listeMotFrancais.put("GRAMMAIRE", "C'est l'ensemble des règles à suivre pour parler et écrire correctement une langue.");
         listeMotFrancais.put("CONJUGAISON", "C'est l'ensemble des formes verbales suivant les voix, les modes, les temps, les personnes, les nombres.");
         listeMotFrancais.put("DICTIONNAIRE", "Recueil contenant des mots, des expressions d'une langue, présentés dans un ordre convenu, et qui donne des définitions, des informations sur eux.");
-        listeMotMaths.put("RACINE CARREE", "En mathématiques élémentaires, la racine carrée d'un nombre réel positif x est l'unique réel positif qui, lorsqu'il est multiplié par lui-même, donne x, c'est-à-dire le nombre positif dont le carré vaut x.");
+        listeMotMaths.put("RACINECARREE", "En mathématiques élémentaires, la racine carrée d'un nombre réel positif x est l'unique réel positif qui, lorsqu'il est multiplié par lui-même, donne x, c'est-à-dire le nombre positif dont le carré vaut x.");
         listeMotMaths.put("DIVISION", "Symbolisé par le symbole '/'");
         listeMotMaths.put("MULTIPLICATION", "Symbolisé par le symbole 'x'");
         listeMotSport.put("ESCALADE", "Sport qui consiste à grimper sur des obstacles");

@@ -52,4 +52,10 @@ public class ResultatIntrusActivity extends AppCompatActivity {
         notificationManager.notify(0,noti);
 
     }
+
+    public void reessayer(View view) {
+        Intent intent = new Intent(this, IntrusActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 }
