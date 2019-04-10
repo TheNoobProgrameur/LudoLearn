@@ -16,6 +16,7 @@ public class Joueur extends SugarRecord<Joueur> {
     private String adresseMail;
     private String motDePasse;
     private String photoPath;
+    private int progression;
 
     public Joueur(){}
 
@@ -24,6 +25,7 @@ public class Joueur extends SugarRecord<Joueur> {
         this.prenom=prenom;
         this.adresseMail=mail;
         this.motDePasse=mdp;
+        this.progression=100;
     }
 
     public Bitmap getPhoto(Context context) {
@@ -51,6 +53,8 @@ public class Joueur extends SugarRecord<Joueur> {
     public String getMotDePasse(){
         return motDePasse;
     }
+
+    public int getProgression() { return  progression; }
 
     public void setPhoto(Bitmap photo, Context context) {
         try{
@@ -80,5 +84,7 @@ public class Joueur extends SugarRecord<Joueur> {
     public void setMotDePasse(String mdp){
         this.nom=mdp;
     }
+
+    public  void setProgression(int progression) { this.progression=progression;}
 
 }

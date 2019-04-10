@@ -11,12 +11,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
+import progmobile.ludolearn.bd.Joueur;
 import progmobile.ludolearn.bd.Resultat;
 
 public class PenduActivity extends AppCompatActivity{
@@ -136,9 +139,20 @@ public class PenduActivity extends AppCompatActivity{
                         resultatFinal.save();
                     }
 
-
                     TextView definition = (TextView) findViewById(R.id.textDefinition);
-                    definition.setText(listeMotUtilisee.get(motEntier)+"\n\n\n\n"+"Derniers Resultats (Nombre d'erreurs) : \n"+TabScor());;
+                    definition.setText(listeMotUtilisee.get(motEntier)+"\n\n\n\n"+"Derniers Resultats (Nombre d'erreurs) : \n"+TabScor());
+
+                    //Progression
+                    List<Joueur> liste = Joueur.listAll(Joueur.class);
+                    for (int i = 0; i<liste.size(); i++ ) {
+                        if (liste.get(i).getPrenom().equals(ConnexionActivity.nomUser.split(" ")[0])) {
+                            int addProgression = 10-nbErreurs;
+                            ConnexionActivity.progression = ConnexionActivity.progression+addProgression;
+                            liste.get(i).setProgression(ConnexionActivity.progression);
+                            liste.get(i).save();
+                            Toast.makeText(PenduActivity.this, "Votre niveau a augmenté de " + addProgression + " points" , Toast.LENGTH_LONG).show();
+                        }
+                    }
 
                     finPartie();
                 }

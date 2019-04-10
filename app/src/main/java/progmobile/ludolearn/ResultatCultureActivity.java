@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -83,10 +84,20 @@ public class ResultatCultureActivity extends AppCompatActivity {
             Resultat resultatFinal = new Resultat(ConnexionActivity.nomUser.split(" ")[0], scoreFinale, "CultureG") ;
             resultatFinal.save();
         }
-
-
         textScore = (TextView) findViewById(R.id.Resultat);
         textScore.setText(textScore.getText() + "\n"+TabScor());
+
+        //Progression
+        List<Joueur> liste = Joueur.listAll(Joueur.class);
+        for (int i = 0; i<liste.size(); i++ ) {
+            if (liste.get(i).getPrenom().equals(ConnexionActivity.nomUser.split(" ")[0])) {
+                int addProgression = scoreFinale;
+                ConnexionActivity.progression = ConnexionActivity.progression+addProgression;
+                liste.get(i).setProgression(ConnexionActivity.progression);
+                liste.get(i).save();
+                Toast.makeText(ResultatCultureActivity.this, "Votre niveau a augmenté de " + addProgression + " points" , Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     public void retour(View view){

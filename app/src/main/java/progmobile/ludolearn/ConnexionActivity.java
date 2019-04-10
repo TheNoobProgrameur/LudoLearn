@@ -17,6 +17,7 @@ public class ConnexionActivity extends AppCompatActivity {
     public boolean existe = false;
     public static String nomUser = null;
     public static Bitmap photo;
+    public static int progression;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class ConnexionActivity extends AppCompatActivity {
             if (liste.get(i).getAdresseMail().equals(valMail) && liste.get(i).getMotDePasse().equals(valMdp)) {
                 nomUser = liste.get(i).getPrenom() + " !";
                 photo = liste.get(i).getPhoto(this);
+                progression = liste.get(i).getProgression();
                 Intent intent = new Intent(this, choixExerciceActivity.class);
                 startActivity(intent);
                 existe = true;

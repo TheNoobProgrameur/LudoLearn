@@ -9,6 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
+
+import progmobile.ludolearn.bd.Joueur;
 
 public class ResultatMathsActivity extends AppCompatActivity {
 
@@ -50,6 +55,18 @@ public class ResultatMathsActivity extends AppCompatActivity {
 
         TextView textErreur = (TextView) findViewById(R.id.nbErreurs);
         textErreur.setText(Integer.toString(nbErreurs) + " erreurs");
+
+        //Progression
+        List<Joueur> liste = Joueur.listAll(Joueur.class);
+        for (int i = 0; i<liste.size(); i++ ) {
+            if (liste.get(i).getPrenom().equals(ConnexionActivity.nomUser.split(" ")[0])) {
+                int addProgression = 5-nbErreurs;
+                ConnexionActivity.progression = ConnexionActivity.progression+addProgression;
+                liste.get(i).setProgression(ConnexionActivity.progression);
+                liste.get(i).save();
+                Toast.makeText(ResultatMathsActivity.this, "Votre niveau a augmenté de " + addProgression + " points" , Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     public void reessayerCalcul(View view) {
@@ -119,7 +136,7 @@ public class ResultatMathsActivity extends AppCompatActivity {
     }
 
     public void retour(View view){
-        Intent intent = new Intent(this, MathsActivity.class);
+        Intent intent = new Intent(this, choixExerciceActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         createNotification();

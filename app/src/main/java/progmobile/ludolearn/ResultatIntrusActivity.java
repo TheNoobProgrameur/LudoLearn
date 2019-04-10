@@ -10,6 +10,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
+
+import progmobile.ludolearn.bd.Joueur;
 
 public class ResultatIntrusActivity extends AppCompatActivity {
 
@@ -22,6 +27,18 @@ public class ResultatIntrusActivity extends AppCompatActivity {
         int nbErreurs = IntrusActivity.nbErreurs;
         int resultat = 10-nbErreurs;
         textScore.setText(textScore.getText() + Integer.toString(resultat) +"/10");
+
+        //Progression
+        List<Joueur> liste = Joueur.listAll(Joueur.class);
+        for (int i = 0; i<liste.size(); i++ ) {
+            if (liste.get(i).getPrenom().equals(ConnexionActivity.nomUser.split(" ")[0])) {
+                int addProgression = resultat;
+                ConnexionActivity.progression = ConnexionActivity.progression+addProgression;
+                liste.get(i).setProgression(ConnexionActivity.progression);
+                liste.get(i).save();
+                Toast.makeText(ResultatIntrusActivity.this, "Votre niveau a augmenté de " + addProgression + " points" , Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     public void retour(View view){
